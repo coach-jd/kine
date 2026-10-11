@@ -1,0 +1,293 @@
+:root{
+  --azul:#007ACC;
+  --azul-dark:#005D9C;
+  --verde:#8BC34A;
+  --verde-dark:#628F2E;
+  --gris:#2D2D2D;
+  --blanco:#FFFFFF;
+  --danger:#C0433F;
+  --font-display:'Montserrat',sans-serif;
+  --font-body:'Inter',-apple-system,Segoe UI,sans-serif;
+  --ease-salida:cubic-bezier(.4,0,.2,1);
+  --ease-entrada:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box;}
+html,body{
+  height:100%;margin:0;padding:0;background:#000;color:var(--blanco);
+  font-family:var(--font-body);overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+
+#app{position:fixed;inset:0;background:#000;}
+
+/* ---------- pantalla de inicio ---------- */
+#pantallaInicio{
+  position:absolute;inset:0;z-index:50;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  background:linear-gradient(160deg,var(--gris) 0%,#111 100%);
+  padding:32px;text-align:center;
+}
+#pantallaInicio[hidden]{display:none;}
+.ki-brand{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.ki-brand .mark{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(155deg,var(--verde),var(--verde-dark));
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-display);
+  font-weight:800;font-size:20px;color:#132000;
+}
+.ki-brand .word{font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:.02em;}
+#pantallaInicio h1{font-family:var(--font-display);font-weight:800;font-size:26px;margin:4px 0 0;text-transform:uppercase;}
+#pantallaInicio p{font-size:14px;color:#C9D2D6;max-width:280px;line-height:1.5;margin:0;}
+.btn-comenzar{
+  margin-top:10px;padding:14px 34px;border-radius:100px;border:none;
+  background:var(--azul);color:#fff;font-family:var(--font-body);font-weight:700;font-size:15px;
+  cursor:pointer;display:flex;align-items:center;gap:8px;
+}
+.btn-comenzar:active{background:var(--azul-dark);}
+.btn-comenzar:disabled{opacity:.45;pointer-events:none;}
+
+.btn-instalar{
+  margin-top:2px;padding:10px 24px;border-radius:100px;border:1.5px solid rgba(255,255,255,.3);
+  background:transparent;color:#fff;font-family:var(--font-body);font-weight:600;font-size:13px;
+  cursor:pointer;display:flex;align-items:center;gap:7px;
+}
+.btn-instalar[hidden]{display:none;}
+
+/* ---------- catálogo (pantalla principal) ---------- */
+#pantallaCatalogo{
+  position:absolute;inset:0;z-index:40;overflow-y:auto;
+  background:linear-gradient(180deg,#181818 0%,#0a0a0a 100%);
+  padding:max(20px,env(safe-area-inset-top)) 20px 40px;
+  opacity:1;transition:opacity .3s ease;
+}
+#pantallaCatalogo[hidden]{display:none;}
+#pantallaCatalogo:not(.visible){opacity:0;pointer-events:none;}
+
+.catalogo-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;}
+.catalogo-titulo{font-family:var(--font-display);font-weight:800;font-size:22px;margin:0 0 4px;text-transform:uppercase;}
+.catalogo-sub{font-size:13px;color:#9AA5AC;margin:0 0 22px;}
+
+.catalogo-grid{display:flex;flex-direction:column;gap:18px;}
+.poster-card{width:100%;}
+.poster{
+  position:relative;aspect-ratio:2/3;border-radius:14px;overflow:hidden;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  transition:transform .18s var(--ease-salida);
+}
+.poster:active{transform:scale(.98);}
+.poster::before{content:"";position:absolute;inset:0;opacity:.14;
+  background-image:repeating-linear-gradient(115deg, rgba(255,255,255,.5) 0 2px, transparent 2px 26px);}
+.poster::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.05) 55%, transparent 80%);}
+
+.poster.tema-azul{background:linear-gradient(150deg,#0E5E8F,#173049);}
+.poster.tema-verde{background:linear-gradient(150deg,#3E4A2E,#1D2415);}
+.poster.tema-violeta{background:linear-gradient(150deg,#5C3E8F,#241B33);}
+
+.poster-icon{position:absolute;top:16px;right:16px;font-size:26px;opacity:.5;z-index:1;filter:grayscale(1) brightness(2);}
+.poster-info{
+  position:absolute;top:12px;left:12px;z-index:2;width:30px;height:30px;border-radius:50%;
+  border:none;background:rgba(0,0,0,.45);color:#fff;font-size:15px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.poster-title{position:relative;z-index:1;padding:0 16px 4px;font-family:var(--font-display);font-weight:800;font-size:19px;text-transform:uppercase;}
+.poster-generos{position:relative;z-index:1;padding:0 16px 16px;font-size:12px;color:#C9D2D6;}
+
+@media (min-width:560px){
+  .catalogo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+}
+.btn-instalar:active{background:rgba(255,255,255,.08);}
+
+#iosInstalarHint{
+  position:fixed;left:14px;right:14px;bottom:max(14px,env(safe-area-inset-bottom));z-index:60;
+  display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;
+  background:rgba(20,20,20,.95);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(8px);
+}
+#iosInstalarHint[hidden]{display:none;}
+#iosInstalarHint p{margin:0;font-size:12.5px;line-height:1.4;color:#E4E9EC;}
+#iosInstalarHint button{
+  flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:none;background:rgba(255,255,255,.1);
+  color:#fff;cursor:pointer;font-size:12px;
+}
+
+.badge-proto{
+  position:absolute;bottom:22px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:#7C8890;
+}
+
+/* ---------- reproductor ---------- */
+.stage{position:absolute;inset:0;background:#000;}
+.stage video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .45s var(--ease-salida);
+}
+.stage video.visible{opacity:1;}
+
+.mute-btn{
+  position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;z-index:30;
+  width:38px;height:38px;border-radius:50%;border:none;background:rgba(0,0,0,.4);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;
+}
+
+/* ---------- overlay de trilema ---------- */
+#overlayTrilema{
+  position:absolute;inset:0;z-index:20;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 16px max(28px,env(safe-area-inset-bottom));
+  background:linear-gradient(0deg, rgba(45,45,45,.86) 0%, rgba(45,45,45,.55) 45%, transparent 75%);
+  opacity:0;pointer-events:none;transition:opacity .25s ease;
+}
+#overlayTrilema.visible{opacity:1;pointer-events:auto;}
+
+.trilema-head{margin-bottom:14px;}
+.trilema-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--verde);
+}
+.trilema-titulo{font-family:var(--font-display);font-weight:800;font-size:19px;margin:2px 0 6px;text-transform:uppercase;}
+.trilema-pregunta{font-size:13.5px;color:#E4E9EC;margin:0 0 4px;line-height:1.4;}
+
+/* la cabecera entra primero, las tarjetas la siguen en cascada */
+#overlayTrilema.visible .trilema-head{animation:entradaSuave .4s var(--ease-entrada) both;}
+#overlayTrilema.visible .trilema-cards{animation:entradaSuave .4s var(--ease-entrada) both .06s;}
+
+@keyframes entradaSuave{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes entradaTarjeta{
+  from{opacity:0;transform:translateY(16px) scale(.98);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+.trilema-cards{display:flex;flex-direction:column;gap:10px;}
+.trilema-card{
+  position:relative;display:flex;align-items:center;gap:12px;padding:13px 14px 13px 18px;border-radius:14px;
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);overflow:hidden;
+  backdrop-filter:blur(6px);cursor:pointer;text-align:left;
+  transition:background .18s var(--ease-salida),border-color .18s var(--ease-salida),transform .18s var(--ease-salida);
+  animation:entradaTarjeta .38s var(--ease-entrada) both;
+}
+#overlayTrilema.visible .trilema-card:nth-child(1){animation-delay:.10s;}
+#overlayTrilema.visible .trilema-card:nth-child(2){animation-delay:.18s;}
+#overlayTrilema.visible .trilema-card:nth-child(3){animation-delay:.26s;}
+
+.trilema-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--azul);
+  transform:scaleY(0);transform-origin:top;transition:transform .18s var(--ease-salida);
+}
+.trilema-card:hover::before,.trilema-card:focus-visible::before{transform:scaleY(1);}
+
+.trilema-card:active{transform:scale(.97);}
+.trilema-card:focus-visible{outline:2px solid var(--azul);outline-offset:2px;}
+.trilema-card.chosen{background:var(--verde);border-color:var(--verde);transform:scale(1.015);}
+.trilema-card.chosen::before{background:#fff;transform:scaleY(1);}
+.trilema-card.chosen .card-letra{background:#fff;color:var(--verde-dark);}
+.trilema-card.chosen .card-label,.trilema-card.chosen .card-desc{color:#132000;}
+.trilema-card:disabled{cursor:default;}
+.trilema-card:disabled:not(.chosen){opacity:.4;transform:scale(.98);}
+
+/* foco por swipe: recorrer las opciones deslizando antes de confirmar */
+.trilema-card.focused{border-color:var(--azul);background:rgba(255,255,255,.13);transform:scale(1.02);}
+.trilema-card.focused::before{transform:scaleY(1);}
+.trilema-cards{touch-action:pan-y;}
+
+.card-letra{
+  flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--azul);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:14px;
+  transition:background .18s var(--ease-salida),color .18s var(--ease-salida);
+}
+.card-label{font-weight:700;font-size:14px;color:#fff;display:block;transition:color .18s var(--ease-salida);}
+.card-desc{font-size:12px;color:#C9D2D6;display:block;margin-top:1px;transition:color .18s var(--ease-salida);}
+
+/* ---------- pantalla de cierre / hoja ---------- */
+#pantallaCierre{
+  position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;gap:16px;padding:32px;
+  background:rgba(20,20,20,.94);opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+#pantallaCierre.visible{opacity:1;pointer-events:auto;}
+.cierre-tipo{font-family:var(--font-display);font-weight:800;font-size:24px;text-transform:uppercase;}
+.cierre-tipo.tono-verde{color:var(--verde);}
+.cierre-tipo.tono-azul{color:var(--azul);}
+.cierre-tipo.tono-rojo{color:var(--danger);}
+.cierre-tipo.tono-gris{color:#8892A0;}
+.cierre-resumen{font-size:14px;color:#D6DDE0;max-width:300px;line-height:1.5;margin:0;}
+.cierre-acciones{display:flex;gap:10px;margin-top:6px;}
+.btn-cierre{
+  padding:12px 22px;border-radius:100px;border:1.5px solid rgba(255,255,255,.3);background:transparent;
+  color:#fff;font-family:var(--font-body);font-weight:600;font-size:13.5px;cursor:pointer;
+}
+.btn-cierre.primario{background:var(--azul);border-color:var(--azul);}
+.btn-cierre.btn-ancho{width:100%;max-width:300px;margin-top:4px;}
+
+.cierre-links{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;margin-top:4px;}
+.cierre-links-sep{color:#4A5257;font-size:11px;}
+.cierre-links .link-estadisticas{margin:0;}
+
+.creditos-sinopsis{font-size:13.5px;color:#D6DDE0;line-height:1.5;margin:0 0 4px;}
+.creditos-detalle{font-size:12.5px;color:#9AA5AC;line-height:1.45;margin:2px 0 4px;}
+
+.link-estadisticas{
+  background:none;border:none;color:#8DBBD9;font-size:12.5px;font-family:var(--font-body);
+  cursor:pointer;margin-top:2px;text-decoration:underline;text-underline-offset:3px;
+}
+
+/* ---------- paneles tipo hoja inferior: estadísticas y créditos ---------- */
+#panelEstadisticas,#panelCreditos{
+  position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;justify-content:center;
+  background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s ease;
+}
+#panelEstadisticas.visible,#panelCreditos.visible{opacity:1;pointer-events:auto;}
+#panelEstadisticas[hidden],#panelCreditos[hidden]{display:none;}
+
+.pe-sheet{
+  width:100%;max-width:480px;max-height:82vh;background:var(--gris);border-radius:20px 20px 0 0;
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:translateY(100%);transition:transform .3s var(--ease-entrada);
+}
+#panelEstadisticas.visible .pe-sheet,#panelCreditos.visible .pe-sheet{transform:translateY(0);}
+
+.pe-head{
+  display:flex;align-items:center;justify-content:space-between;padding:18px 20px;
+  border-bottom:1px solid rgba(255,255,255,.1);flex:0 0 auto;
+}
+.pe-head h2{font-family:var(--font-display);font-weight:800;font-size:15px;margin:0;text-transform:uppercase;}
+.pe-head button{width:28px;height:28px;border-radius:50%;border:none;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;}
+
+.pe-body{flex:1 1 auto;overflow-y:auto;padding:16px 20px;}
+.pe-empty{font-size:13px;color:#8892A0;text-align:center;padding:30px 10px;}
+
+.pe-section-title{
+  font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#8892A0;
+  margin:18px 0 8px;
+}
+.pe-section-title:first-child{margin-top:0;}
+
+.pe-stat-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px;}
+.pe-stat-row .k{color:#C9D2D6;}
+.pe-stat-row .v{font-family:'JetBrains Mono',monospace;font-weight:600;}
+
+.pe-bar-row{margin-bottom:9px;}
+.pe-bar-row .pe-bar-label{display:flex;justify-content:space-between;font-size:12px;color:#C9D2D6;margin-bottom:3px;}
+.pe-bar-track{height:7px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden;}
+.pe-bar-fill{height:100%;border-radius:100px;background:var(--azul);}
+
+.pe-foot{display:flex;gap:10px;padding:14px 20px;border-top:1px solid rgba(255,255,255,.1);flex:0 0 auto;}
+.pe-foot .btn-cierre{flex:1;font-size:12.5px;padding:10px 12px;}
+
+/* ---------- indicador de recorrido (debug, útil para QA en todas las fases) ---------- */
+#trazaRecorrido{
+  position:absolute;top:max(16px,env(safe-area-inset-top));left:64px;z-index:30;
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:rgba(255,255,255,.55);
+  background:rgba(0,0,0,.35);padding:5px 9px;border-radius:100px;
+}
+
+/* ---------- accesibilidad de movimiento ---------- */
+@media (prefers-reduced-motion:reduce){
+  .stage video{transition-duration:.01ms;}
+  .trilema-card,#overlayTrilema.visible .trilema-head,#overlayTrilema.visible .trilema-cards{
+    animation:none!important;opacity:1!important;transform:none!important;
+  }
+  #overlayTrilema,#pantallaCierre{transition-duration:.01ms;}
+}

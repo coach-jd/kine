@@ -1,0 +1,17 @@
+{
+  "name": "Kine",
+  "short_name": "Kine",
+  "description": "Historias que multiplican futuros — ve, decide, descubre otros caminos.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2D2D2D",
+  "theme_color": "#007ACC",
+  "lang": "es",
+  "icons": [
+    { "src": "icons/kine-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/kine-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/kine-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

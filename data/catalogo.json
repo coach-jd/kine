@@ -1,0 +1,28 @@
+{
+  "obras": [
+    {
+      "id": "9no-inning",
+      "titulo": "9no Inning",
+      "generos": ["Drama", "Deportivo"],
+      "posterTema": "azul",
+      "configPath": "data/obras/9no-inning.json",
+      "estado": "publicado"
+    },
+    {
+      "id": "rutas-invisibles",
+      "titulo": "Rutas Invisibles",
+      "generos": ["Thriller", "Misterio"],
+      "posterTema": "verde",
+      "configPath": "data/obras/rutas-invisibles.json",
+      "estado": "publicado"
+    },
+    {
+      "id": "toda-via-cuenta",
+      "titulo": "Toda Vía Cuenta",
+      "generos": ["Drama", "Road Movie"],
+      "posterTema": "violeta",
+      "configPath": "data/obras/toda-via-cuenta.json",
+      "estado": "publicado"
+    }
+  ]
+}
