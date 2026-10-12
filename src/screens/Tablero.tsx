@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react'
 import { ESTRENO, PROXIMAS, TONOS, idsDeFinales, type Tono } from '../data/obras'
 import { leerEventos, resumir, type Evento, type Resumen } from '../lib/datos'
 import { urlBucle, urlVideo } from '../lib/media'
@@ -125,7 +125,7 @@ function Entrada({ alEntrar }: { alEntrar: () => void }) {
 function Panel({ correo, alSalir }: { correo: string; alSalir: () => void }) {
   const [dias, setDias] = useState<number | null>(30)
   const [vuelta, setVuelta] = useState(0)
-  const [resumen, setResumen] = useState<Resumen | null>(null)
+  const [eventos, setEventos] = useState<Evento[] | null>(null)
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -133,12 +133,12 @@ function Panel({ correo, alSalir }: { correo: string; alSalir: () => void }) {
     setError('')
     ;(async () => {
       try {
-        if (MUESTRA) return setResumen(resumir(eventosDeMuestra(), obra.id))
+        if (MUESTRA) return setEventos(eventosDeMuestra())
         const token = await tokenVigente()
         if (!token) return alSalir()
         const desde = dias ? new Date(Date.now() - dias * 86_400_000).toISOString() : null
-        const eventos = await leerEventos(token, desde)
-        if (vigente) setResumen(resumir(eventos, obra.id))
+        const leidos = await leerEventos(token, desde)
+        if (vigente) setEventos(leidos)
       } catch (e) {
         if (vigente) setError(e instanceof Error ? e.message : 'No se pudieron leer los datos')
       }
@@ -148,6 +148,19 @@ function Panel({ correo, alSalir }: { correo: string; alSalir: () => void }) {
     }
     // alSalir cambia en cada render del padre; no debe relanzar la lectura.
   }, [dias, vuelta])
+
+  const resumen = useMemo(() => (eventos ? resumir(eventos, obra.id) : null), [eventos])
+
+  // Baja los eventos del periodo elegido tal como están en la base de datos.
+  function descargar() {
+    if (!eventos) return
+    const archivo = new Blob([JSON.stringify(eventos, null, 2)], { type: 'application/json' })
+    const enlace = document.createElement('a')
+    enlace.href = URL.createObjectURL(archivo)
+    enlace.download = `kine-eventos-${new Date().toISOString().slice(0, 10)}.json`
+    enlace.click()
+    URL.revokeObjectURL(enlace.href)
+  }
 
   const boton = 'h-10 rounded-lg border px-3.5 text-sm font-bold'
   return (
@@ -175,6 +188,9 @@ function Panel({ correo, alSalir }: { correo: string; alSalir: () => void }) {
           ))}
           <button onClick={() => setVuelta(vuelta + 1)} className={`${boton} border-line-2 text-soft`}>
             Actualizar
+          </button>
+          <button onClick={descargar} disabled={!eventos} className={`${boton} border-line-2 text-soft disabled:opacity-50`}>
+            Descargar JSON
           </button>
           <button onClick={alSalir} className={`${boton} border-line-2 text-soft`}>
             Salir
