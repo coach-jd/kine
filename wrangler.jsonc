@@ -1,0 +1,9 @@
+{
+  // Publicación en Cloudflare Workers: sirve la carpeta dist como sitio estático.
+  "name": "kine",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
