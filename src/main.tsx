@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { Suspense, lazy, useEffect } from 'react'
 import { HashRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { registerSW } from 'virtual:pwa-register'
 import './index.css'
 import Cierre from './screens/Cierre'
 import Ficha from './screens/Ficha'
@@ -8,6 +9,10 @@ import Inicio from './screens/Inicio'
 import MiKine from './screens/MiKine'
 import Proximamente from './screens/Proximamente'
 import Reproductor from './screens/Reproductor'
+
+// Cuando se publica una versión nueva, la app la instala y se recarga sola;
+// sin esto, quien ya la abrió seguiría viendo la versión anterior una visita más.
+registerSW({ immediate: true })
 
 // El tablero privado se descarga solo cuando alguien lo abre.
 const Tablero = lazy(() => import('./screens/Tablero'))
