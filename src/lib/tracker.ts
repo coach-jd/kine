@@ -1,12 +1,10 @@
 // Registro de eventos de medición. Cada evento entra a una cola guardada en el
 // dispositivo y se envía a Supabase; si no hay red, sale en el siguiente intento.
+import { LLAVE, URL_BASE, cabeceras } from './supabase'
 
 const CLAVE = 'kine.pendientes'
 const CLAVE_DISPOSITIVO = 'kine.dispositivo'
 const MAXIMO = 1000
-
-const URL_BASE = (import.meta.env.VITE_SUPABASE_URL as string | undefined)?.replace(/\/$/, '')
-const LLAVE = import.meta.env.VITE_SUPABASE_KEY as string | undefined
 
 export type TipoEvento =
   | 'obra_inicio'
@@ -76,12 +74,7 @@ async function enviar() {
     const respuesta = await fetch(`${URL_BASE}/rest/v1/eventos`, {
       method: 'POST',
       keepalive: true,
-      headers: {
-        apikey: LLAVE,
-        Authorization: `Bearer ${LLAVE}`,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
-      },
+      headers: { ...cabeceras(), Prefer: 'return=minimal' },
       body: JSON.stringify(lote),
     })
     // Un rechazo del servidor (4xx) no se arregla reintentando: se descarta el lote.

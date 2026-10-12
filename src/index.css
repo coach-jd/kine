@@ -20,6 +20,12 @@
   --color-violeta-tint: #241a4d;
   --color-naranja-tint: #3a2412;
 
+  /* Pasos para gráficos: mismos tonos, validados sobre la superficie oscura. */
+  --color-g-cian: #0e9dc2;
+  --color-g-violeta: #a25eee;
+  --color-g-naranja: #d67614;
+  --color-g-neutro: #6f86d6;
+
   --font-display: "Montserrat", system-ui, sans-serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
 
