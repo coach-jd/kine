@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ground: #060a1c;
+  --color-video: #0c1330;
+  --color-surface: #101935;
+  --color-surface-2: #16214a;
+  --color-nav-active: #2a3a75;
+  --color-line: #26335f;
+  --color-line-2: #2f3f7a;
+  --color-ring-off: #3f4f8c;
+  --color-outline: #5a6aa8;
+  --color-dim: #8e9ac2;
+  --color-muted: #b4bedb;
+  --color-soft: #dce2f5;
+  --color-cian: #22d3ff;
+  --color-violeta: #b06cff;
+  --color-naranja: #ff9a2e;
+  --color-cian-tint: #0d2b45;
+  --color-violeta-tint: #241a4d;
+  --color-naranja-tint: #3a2412;
+
+  --font-display: "Montserrat", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  --animate-subir: subir 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-aparecer: aparecer 0.3s ease-out both;
+
+  @keyframes subir {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #02040c;
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+}
+
+.sin-barra {
+  scrollbar-width: none;
+}
+.sin-barra::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+  }
+}

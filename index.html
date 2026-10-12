@@ -1,130 +1,25 @@
 <!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kine — Catálogo</title>
-
-<!-- PWA: manifest + color de tema -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#007ACC">
-
-<!-- iOS: Safari no lee manifest.json para íconos/modo standalone, necesita esto aparte -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kine">
-<link rel="apple-touch-icon" href="icons/kine-192.png">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-<div id="app">
-
-  <!-- catálogo: pantalla principal tipo Netflix -->
-  <div id="pantallaCatalogo">
-    <div class="catalogo-topbar">
-      <div class="ki-brand">
-        <div class="mark">K</div>
-        <div class="word">KINE</div>
-      </div>
-      <button class="btn-instalar" id="btnInstalar" hidden><span>⤓</span> Instalar</button>
-    </div>
-    <h1 class="catalogo-titulo">Elegí tu Polimetraje</h1>
-    <p class="catalogo-sub">Cada afiche es una historia distinta. Vos decidís cómo termina.</p>
-    <div class="catalogo-grid" id="catalogoGrid"></div>
-    <div class="badge-proto">Kine · Catálogo · 3 obras disponibles</div>
-  </div>
-
-  <!-- pantalla de inicio para links compartidos (requerida por las políticas de autoplay móvil) -->
-  <div id="pantallaInicio" hidden>
-    <div class="ki-brand">
-      <div class="mark">K</div>
-      <div class="word">KINE</div>
-    </div>
-    <h1 id="obraTitulo">Cargando…</h1>
-    <p id="obraSub"></p>
-    <button class="btn-comenzar" id="btnComenzar" disabled>
-      <span>▶</span> Comenzar
-    </button>
-    <button class="link-estadisticas" id="btnVolverCatalogoInicio">← Volver al catálogo</button>
-  </div>
-
-  <!-- aviso manual de instalación en iOS (Safari no dispara beforeinstallprompt) -->
-  <div id="iosInstalarHint" hidden>
-    <p>Para instalar Kine: tocá <strong>Compartir</strong> ⬆︎ y luego <strong>"Agregar a pantalla de inicio"</strong>.</p>
-    <button id="btnCerrarIosHint" aria-label="Cerrar aviso">✕</button>
-  </div>
-
-  <!-- escenario de reproducción -->
-  <div class="stage" id="stage">
-    <video id="videoMain" playsinline muted></video>
-    <video id="videoLoop" playsinline muted loop></video>
-
-    <div id="trazaRecorrido">T</div>
-    <button class="mute-btn" id="btnVolverCatalogo" style="left:16px;right:auto;" aria-label="Volver al catálogo">←</button>
-    <button class="mute-btn" id="btnMute" aria-label="Activar sonido">🔇</button>
-    <button class="mute-btn" id="btnAbrirEstadisticas" style="right:64px;" aria-label="Ver estadísticas">📊</button>
-
-    <!-- overlay de Trilema -->
-    <div id="overlayTrilema">
-      <div class="trilema-head">
-        <div class="trilema-eyebrow">Umbral <span id="umbralId"></span></div>
-        <h2 class="trilema-titulo" id="umbralTitulo"></h2>
-        <p class="trilema-pregunta" id="umbralPregunta"></p>
-      </div>
-      <div class="trilema-cards" id="trilemaCards"></div>
-    </div>
-  </div>
-
-  <!-- pantalla de cierre / hoja -->
-  <div id="pantallaCierre">
-    <div class="cierre-tipo" id="cierreTipo"></div>
-    <p class="cierre-resumen" id="cierreResumen"></p>
-    <button class="btn-cierre primario btn-ancho" id="btnVolverCatalogoCierre">Volver al catálogo</button>
-    <div class="cierre-links">
-      <button class="link-estadisticas" id="btnVerCreditosCierre">Ver créditos</button>
-      <span class="cierre-links-sep">·</span>
-      <button class="link-estadisticas" id="btnReintentar">Repetir esta obra</button>
-      <span class="cierre-links-sep">·</span>
-      <button class="link-estadisticas" id="btnCompartir">Compartir este camino</button>
-    </div>
-    <button class="link-estadisticas" id="btnVerEstadisticasCierre">Ver estadísticas de todas las partidas →</button>
-  </div>
-
-  <!-- panel de estadísticas (Fase 6) -->
-  <div id="panelEstadisticas" hidden>
-    <div class="pe-sheet">
-      <div class="pe-head">
-        <h2>Estadísticas · <span id="peObraTitulo"></span></h2>
-        <button id="btnCerrarEstadisticas" aria-label="Cerrar">✕</button>
-      </div>
-      <div class="pe-body" id="peBody"></div>
-      <div class="pe-foot">
-        <button class="btn-cierre" id="btnExportarDatos">⤓ Exportar JSON</button>
-        <button class="btn-cierre" id="btnLimpiarDatos">Borrar datos de esta obra</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- panel de créditos -->
-  <div id="panelCreditos" hidden>
-    <div class="pe-sheet">
-      <div class="pe-head">
-        <h2 id="credObraTitulo"></h2>
-        <button id="btnCerrarCreditos" aria-label="Cerrar">✕</button>
-      </div>
-      <div class="pe-body" id="credBody"></div>
-    </div>
-  </div>
-
-</div>
-
-<script src="js/player.js"></script>
-<script src="js/navigation.js"></script>
-<script src="js/tracker.js"></script>
-<script src="js/preload.js"></script>
-<script src="js/analytics.js"></script>
-<script src="js/app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Kine</title>
+    <meta name="description" content="Polimetrajes: historias en video vertical donde tú decides cómo terminan." />
+    <meta name="theme-color" content="#060A1C" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Kine" />
+    <link rel="icon" type="image/png" href="marca/icono-192.png" />
+    <link rel="apple-touch-icon" href="marca/icono-180.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
