@@ -71,6 +71,7 @@ async function enviar() {
   const lote = leerCola()
   if (lote.length === 0) return
   enviando = true
+  let entregado = false
   try {
     const respuesta = await fetch(`${URL_BASE}/rest/v1/eventos`, {
       method: 'POST',
@@ -86,12 +87,15 @@ async function enviar() {
     // Un rechazo del servidor (4xx) no se arregla reintentando: se descarta el lote.
     if (respuesta.ok || (respuesta.status >= 400 && respuesta.status < 500)) {
       guardarCola(leerCola().slice(lote.length))
+      entregado = true
     }
   } catch {
     // Sin red: el lote queda en la cola.
   } finally {
     enviando = false
   }
+  // Lo que se registró mientras el lote viajaba sale ahora, sin esperar otro evento.
+  if (entregado) void enviar()
 }
 
 export function registrar(tipo: TipoEvento, datos: Record<string, unknown> = {}) {
