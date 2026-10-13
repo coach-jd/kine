@@ -1,0 +1,51 @@
+{
+  "esquema": "ficha-publicacion-1.0",
+  "obra": {
+    "id": "la-ultima-frecuencia",
+    "titulo": "La última frecuencia",
+    "estado": "proximamente",
+    "generos": [
+      "Ciencia ficción",
+      "Drama"
+    ],
+    "tono": "cian",
+    "gancho": "Tú decides cómo termina.",
+    "sinopsis": "Irene descubre que el sistema que protege su colonia de las tormentas solares deja expuestos a los barrios considerados menos productivos. Con una nueva tormenta próxima y su hermana entre los afectados, debe enfrentar la distribución de la protección y su propia responsabilidad sin destruir la red que los mantiene vivos.",
+    "minutos": 12,
+    "creditos": "Una obra de Polimetrajes Studio",
+    "idioma": "es"
+  },
+  "control": {
+    "version": "v0.1",
+    "fecha": "2026-10-13",
+    "estado": "provisional",
+    "documentos_base": {
+      "dmd": null,
+      "mapa_narrativo": null,
+      "guion": null
+    },
+    "nota": "Concepto aprobado del Catálogo de historias a desarrollar. Ficha de próximo estreno: no incluye decisiones ni finales, que siguen sin DMD aprobado ni auditoría."
+  },
+  "seo": {
+    "titulo": "La última frecuencia: ciencia ficción interactiva | Kine",
+    "descripcion": "Una colonia, una protección desigual y una tormenta próxima. La última frecuencia, una ciencia ficción de Polimetrajes en desarrollo para Kine.",
+    "palabras_clave": [
+      "La última frecuencia",
+      "polimetraje",
+      "historia interactiva",
+      "ciencia ficción",
+      "inteligencia artificial",
+      "supervivencia",
+      "responsabilidad",
+      "video vertical",
+      "Kine"
+    ]
+  },
+  "compartir": {
+    "texto_obra": "La última frecuencia: proteger a la colonia también exige decidir quién queda expuesto. Próximamente en Kine."
+  },
+  "medios": {
+    "afiche": "portadas/la-ultima-frecuencia.jpg",
+    "cartel": "portadas/la-ultima-frecuencia-cartel.jpg"
+  }
+}

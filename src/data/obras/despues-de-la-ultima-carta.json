@@ -1,0 +1,51 @@
+{
+  "esquema": "ficha-publicacion-1.0",
+  "obra": {
+    "id": "despues-de-la-ultima-carta",
+    "titulo": "Después de la última carta",
+    "estado": "proximamente",
+    "generos": [
+      "Romance",
+      "Drama íntimo"
+    ],
+    "tono": "violeta",
+    "gancho": "Tú decides cómo termina.",
+    "sinopsis": "Tomás empieza a reconstruir su vida gracias a las cartas de su esposa fallecida y se enamora de Julia, quien las entrega. Cuando descubre que algunos mensajes fueron alterados, debe afrontar cuánto de ese vínculo eligió libremente y si puede volver a confiar.",
+    "minutos": 12,
+    "creditos": "Una obra de Polimetrajes Studio",
+    "idioma": "es"
+  },
+  "control": {
+    "version": "v0.1",
+    "fecha": "2026-10-13",
+    "estado": "provisional",
+    "documentos_base": {
+      "dmd": null,
+      "mapa_narrativo": null,
+      "guion": null
+    },
+    "nota": "Concepto aprobado del Catálogo de historias a desarrollar. Ficha de próximo estreno: no incluye decisiones ni finales, que siguen sin DMD aprobado ni auditoría."
+  },
+  "seo": {
+    "titulo": "Después de la última carta: romance interactivo | Kine",
+    "descripcion": "Un amor nuevo, una memoria compartida y cartas alteradas. Después de la última carta, un romance de Polimetrajes en desarrollo para Kine.",
+    "palabras_clave": [
+      "Después de la última carta",
+      "polimetraje",
+      "historia interactiva",
+      "romance",
+      "drama íntimo",
+      "duelo",
+      "confianza",
+      "video vertical",
+      "Kine"
+    ]
+  },
+  "compartir": {
+    "texto_obra": "Después de la última carta: volver a confiar también es una decisión. Próximamente en Kine."
+  },
+  "medios": {
+    "afiche": "portadas/despues-de-la-ultima-carta.jpg",
+    "cartel": "portadas/despues-de-la-ultima-carta-cartel.jpg"
+  }
+}

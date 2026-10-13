@@ -315,7 +315,20 @@ function Contenido({ r }: { r: Resumen }) {
           <div className="flex flex-col gap-2.5">
             {PROXIMAS.map((p) => {
               const n = r.avisos.get(p.id) ?? 0
-              return <Fila key={p.id} etiqueta={p.titulo} valor={`${n}`} ancho={n / maxAviso} color="bg-g-neutro" />
+              const correos = r.correos.get(p.id) ?? []
+              return (
+                <div key={p.id} className="flex flex-col gap-1.5">
+                  <Fila etiqueta={p.titulo} valor={`${n}`} ancho={n / maxAviso} color="bg-g-neutro" />
+                  {correos.length > 0 && (
+                    <button
+                      onClick={() => void navigator.clipboard.writeText(correos.join(', '))}
+                      className="self-start text-[13px] text-muted underline"
+                    >
+                      Copiar {correos.length} {correos.length === 1 ? 'correo' : 'correos'}
+                    </button>
+                  )}
+                </div>
+              )
             })}
           </div>
         </Bloque>

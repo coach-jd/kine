@@ -1,0 +1,100 @@
+{
+  "esquema": "ficha-publicacion-1.0",
+  "obra": {
+    "id": "9no-inning",
+    "titulo": "9no Inning",
+    "estado": "disponible",
+    "generos": ["Drama", "Deportivo"],
+    "tono": "cian",
+    "gancho": "Tú decides cómo termina.",
+    "sinopsis": "En el tramo final de una temporada perdida, el gerente deportivo de un equipo en crisis debe decidir si apuesta por la experiencia, los datos o su propio instinto, y vivir con lo que esa decisión revela de su forma de liderar.",
+    "minutos": 12,
+    "creditos": "Una obra de Polimetrajes Studio",
+    "idioma": "es"
+  },
+  "control": {
+    "version": "v0.1",
+    "fecha": "2026-10-13",
+    "estado": "provisional",
+    "documentos_base": { "dmd": null, "mapa_narrativo": null, "guion": null },
+    "nota": "Contenido provisional heredado del borrador de la v1. No proviene del DMD aprobado."
+  },
+  "seo": {
+    "titulo": "9no Inning: drama deportivo interactivo | Kine",
+    "descripcion": "Un equipo en crisis y tres caminos posibles. Mira 9no Inning en Kine y decide cómo termina: 9 finales, 12 minutos por recorrido.",
+    "palabras_clave": ["9no Inning", "polimetraje", "historia interactiva", "drama deportivo", "béisbol", "video vertical", "Kine"]
+  },
+  "compartir": {
+    "texto_obra": "Mira 9no Inning en Kine: tú decides cómo termina.",
+    "texto_final": "Descubrí uno de los 9 finales de 9no Inning en Kine. ¿Cuál te toca a ti?",
+    "imagen": "og/9no-inning.png"
+  },
+  "medios": {
+    "afiche": "portadas/9no-inning.jpg",
+    "cartel": "portadas/9no-inning-cartel.jpg"
+  },
+  "inicio": "T",
+  "nodos": {
+    "T": {
+      "video": "9no-inning/T.mp4",
+      "bucle": "9no-inning/T-umbral.mp4",
+      "decision": {
+        "titulo": "El costo de la apuesta",
+        "contexto": "La directiva, el cuerpo técnico y la afición presionan. ¿Qué debería hacer el protagonista?",
+        "opciones": [
+          { "clave": "A", "titulo": "Apostar por la experiencia", "corto": "Experiencia", "descripcion": "Incorporar al veterano que garantiza estabilidad.", "destino": "T-A" },
+          { "clave": "B", "titulo": "Confiar en los datos", "corto": "Datos", "descripcion": "Fichar al talento subvalorado según el análisis.", "destino": "T-B" },
+          { "clave": "C", "titulo": "Seguir tu intuición", "corto": "Intuición", "descripcion": "Buscar una alternativa menos evidente.", "destino": "T-C" }
+        ]
+      }
+    },
+    "T-A": {
+      "video": "9no-inning/T-A.mp4",
+      "bucle": "9no-inning/T-A-umbral.mp4",
+      "decision": {
+        "titulo": "El precio de la lealtad",
+        "contexto": "El veterano falla en los momentos clave y el vestuario está dividido. ¿Qué debería hacer el protagonista?",
+        "opciones": [
+          { "clave": "1", "titulo": "Sacarlo del juego", "descripcion": "Confiar en el brazo joven de la banca.", "destino": "T-A1" },
+          { "clave": "2", "titulo": "Mantenerlo en el montículo", "descripcion": "Honrar su trayectoria hasta el final.", "destino": "T-A2" },
+          { "clave": "3", "titulo": "Dejar que el vestuario decida", "descripcion": "Ceder el control a los propios jugadores.", "destino": "T-A3" }
+        ]
+      }
+    },
+    "T-B": {
+      "video": "9no-inning/T-B.mp4",
+      "bucle": "9no-inning/T-B-umbral.mp4",
+      "decision": {
+        "titulo": "El límite del algoritmo",
+        "contexto": "El talento rinde en el campo, pero atraviesa una crisis que los números no contemplaron. ¿Qué debería hacer el protagonista?",
+        "opciones": [
+          { "clave": "1", "titulo": "Priorizar el resultado", "descripcion": "Mantenerlo en la alineación pase lo que pase.", "destino": "T-B1" },
+          { "clave": "2", "titulo": "Priorizar a la persona", "descripcion": "Darle espacio, aunque cueste puntos en la tabla.", "destino": "T-B2" },
+          { "clave": "3", "titulo": "Buscar un término medio", "descripcion": "Rotarlo con cautela, sin forzar ni abandonar.", "destino": "T-B3" }
+        ]
+      }
+    },
+    "T-C": {
+      "video": "9no-inning/T-C.mp4",
+      "bucle": "9no-inning/T-C-umbral.mp4",
+      "decision": {
+        "titulo": "El precio de lo impredecible",
+        "contexto": "La apuesta arriesgada da resultados extraños y la directiva exige previsibilidad. ¿Qué debería hacer el protagonista?",
+        "opciones": [
+          { "clave": "1", "titulo": "Duplicar la apuesta", "descripcion": "Ir todavía más lejos con la idea original.", "destino": "T-C1" },
+          { "clave": "2", "titulo": "Retractarse", "descripcion": "Volver a lo convencional antes de que sea tarde.", "destino": "T-C2" },
+          { "clave": "3", "titulo": "Sostenerla sin cambios", "descripcion": "Ni avanzar ni retroceder: esperar que madure.", "destino": "T-C3" }
+        ]
+      }
+    },
+    "T-A1": { "video": "9no-inning/T-A1.mp4", "final": { "titulo": "Final A1", "resumen": "El brazo joven responde bajo presión y el equipo gana confianza en su futuro.", "imagen_compartir": "og/9no-inning/T-A1.png" } },
+    "T-A2": { "video": "9no-inning/T-A2.mp4", "final": { "titulo": "Final A2", "resumen": "El veterano se sostiene a duras penas; el equipo avanza, pero el costo queda expuesto.", "imagen_compartir": "og/9no-inning/T-A2.png" } },
+    "T-A3": { "video": "9no-inning/T-A3.mp4", "final": { "titulo": "Final A3", "resumen": "La decisión colectiva fractura al equipo antes de que pueda resolver nada.", "imagen_compartir": "og/9no-inning/T-A3.png" } },
+    "T-B1": { "video": "9no-inning/T-B1.mp4", "final": { "titulo": "Final B1", "resumen": "El jugador colapsa en el momento decisivo; los datos no midieron lo que realmente importaba.", "imagen_compartir": "og/9no-inning/T-B1.png" } },
+    "T-B2": { "video": "9no-inning/T-B2.mp4", "final": { "titulo": "Final B2", "resumen": "El equipo pierde terreno en la tabla, pero gana algo que ninguna estadística mide.", "imagen_compartir": "og/9no-inning/T-B2.png" } },
+    "T-B3": { "video": "9no-inning/T-B3.mp4", "final": { "titulo": "Final B3", "resumen": "El equilibrio funciona: el jugador se recupera a tiempo para el tramo decisivo.", "imagen_compartir": "og/9no-inning/T-B3.png" } },
+    "T-C1": { "video": "9no-inning/T-C1.mp4", "final": { "titulo": "Final C1", "resumen": "La apuesta se vuelve incontrolable; el equipo pierde el rumbo que intentaba encontrar.", "imagen_compartir": "og/9no-inning/T-C1.png" } },
+    "T-C2": { "video": "9no-inning/T-C2.mp4", "final": { "titulo": "Final C2", "resumen": "Volver a lo seguro salva la temporada, pero deja la duda de qué hubiera pasado.", "imagen_compartir": "og/9no-inning/T-C2.png" } },
+    "T-C3": { "video": "9no-inning/T-C3.mp4", "final": { "titulo": "Final C3", "resumen": "La paciencia rinde frutos justo cuando nadie más creía en ella.", "imagen_compartir": "og/9no-inning/T-C3.png" } }
+  }
+}

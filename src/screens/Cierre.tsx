@@ -100,7 +100,8 @@ export default function Cierre() {
             onClick={async () => {
               const resultado = await compartir(
                 obra,
-                `Descubrí uno de los ${total} finales de ${obra.titulo} en Kine. ¿Cuál te toca a ti?`,
+                obra.compartir?.texto_final ??
+                  `Descubrí uno de los ${total} finales de ${obra.titulo} en Kine. ¿Cuál te toca a ti?`,
                 recorrido.final,
               )
               setCopiado(resultado === 'copiado')

@@ -36,7 +36,9 @@ export default function Ficha() {
           <Icono nombre="atras" tam={22} />
         </Link>
         <button
-          onClick={() => compartir(obra, `Mira ${obra.titulo} en Kine: tú decides cómo termina.`)}
+          onClick={() =>
+            compartir(obra, obra.compartir?.texto_obra ?? `Mira ${obra.titulo} en Kine: tú decides cómo termina.`)
+          }
           aria-label="Compartir esta obra"
           className="absolute top-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-ground/70"
         >

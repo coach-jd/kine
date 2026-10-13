@@ -91,7 +91,9 @@ export default function MiKine() {
               </div>
               <div className="flex min-w-0 flex-col gap-0.5">
                 <div className="text-[15px] font-bold">{p.titulo}</div>
-                <div className="text-sm text-muted">Te avisaremos cuando se estrene.</div>
+                <div className="text-sm text-muted">
+                  Te avisaremos{estado.correo ? ` a ${estado.correo}` : ''} cuando se estrene.
+                </div>
               </div>
             </div>
           ))}

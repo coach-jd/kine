@@ -1,0 +1,50 @@
+{
+  "esquema": "ficha-publicacion-1.0",
+  "obra": {
+    "id": "la-frontera-del-agua",
+    "titulo": "La frontera del agua",
+    "estado": "proximamente",
+    "generos": [
+      "Western contemporáneo",
+      "Drama social"
+    ],
+    "tono": "naranja",
+    "gancho": "Tú decides cómo termina.",
+    "sinopsis": "Durante una sequía, Elena debe ejecutar una orden que deja sin agua a un asentamiento cuyo portavoz salvó a su hija. Con reservas limitadas y comunidades enfrentadas, cada decisión pone a prueba su forma de ejercer la responsabilidad pública.",
+    "minutos": 12,
+    "creditos": "Una obra de Polimetrajes Studio",
+    "idioma": "es"
+  },
+  "control": {
+    "version": "v0.1",
+    "fecha": "2026-10-13",
+    "estado": "provisional",
+    "documentos_base": {
+      "dmd": null,
+      "mapa_narrativo": null,
+      "guion": null
+    },
+    "nota": "Concepto aprobado del Catálogo de historias a desarrollar. Ficha de próximo estreno: no incluye decisiones ni finales, que siguen sin DMD aprobado ni auditoría."
+  },
+  "seo": {
+    "titulo": "La frontera del agua: western interactivo | Kine",
+    "descripcion": "Una sequía, una orden y una deuda personal. La frontera del agua, un western contemporáneo de Polimetrajes en desarrollo para Kine.",
+    "palabras_clave": [
+      "La frontera del agua",
+      "polimetraje",
+      "historia interactiva",
+      "western contemporáneo",
+      "drama social",
+      "sequía",
+      "video vertical",
+      "Kine"
+    ]
+  },
+  "compartir": {
+    "texto_obra": "La frontera del agua: una comunidad espera. Tú decides cómo termina. Próximamente en Kine."
+  },
+  "medios": {
+    "afiche": "portadas/la-frontera-del-agua.jpg",
+    "cartel": "portadas/la-frontera-del-agua-cartel.jpg"
+  }
+}

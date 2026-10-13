@@ -1,0 +1,51 @@
+{
+  "esquema": "ficha-publicacion-1.0",
+  "obra": {
+    "id": "un-lugar-en-la-mesa",
+    "titulo": "Un lugar en la mesa",
+    "estado": "proximamente",
+    "generos": [
+      "Comedia",
+      "Drama"
+    ],
+    "tono": "naranja",
+    "gancho": "Tú decides cómo termina.",
+    "sinopsis": "Rosa, cocinera de un restaurante de barrio en crisis, es confundida con una chef famosa durante una cena decisiva. Sus platos conquistan a los invitados, pero cada oportunidad obtenida bajo un nombre ajeno compromete su identidad y el futuro del equipo.",
+    "minutos": 12,
+    "creditos": "Una obra de Polimetrajes Studio",
+    "idioma": "es"
+  },
+  "control": {
+    "version": "v0.1",
+    "fecha": "2026-10-13",
+    "estado": "provisional",
+    "documentos_base": {
+      "dmd": null,
+      "mapa_narrativo": null,
+      "guion": null
+    },
+    "nota": "Concepto aprobado del Catálogo de historias a desarrollar. Ficha de próximo estreno: no incluye decisiones ni finales, que siguen sin DMD aprobado ni auditoría."
+  },
+  "seo": {
+    "titulo": "Un lugar en la mesa: comedia dramática interactiva | Kine",
+    "descripcion": "Una cocinera, una identidad prestada y una cena decisiva. Un lugar en la mesa, una comedia dramática de Polimetrajes en desarrollo para Kine.",
+    "palabras_clave": [
+      "Un lugar en la mesa",
+      "polimetraje",
+      "historia interactiva",
+      "comedia dramática",
+      "cocina",
+      "identidad",
+      "reconocimiento",
+      "video vertical",
+      "Kine"
+    ]
+  },
+  "compartir": {
+    "texto_obra": "Un lugar en la mesa: el talento es suyo, el nombre no. Próximamente en Kine."
+  },
+  "medios": {
+    "afiche": "portadas/un-lugar-en-la-mesa.jpg",
+    "cartel": "portadas/un-lugar-en-la-mesa-cartel.jpg"
+  }
+}

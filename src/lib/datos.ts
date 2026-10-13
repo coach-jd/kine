@@ -57,6 +57,8 @@ export interface Resumen {
   nodosIniciados: Map<string, number>
   nodosTerminados: Map<string, number>
   avisos: Map<string, number>
+  // obra -> correos de quienes pidieron el aviso
+  correos: Map<string, string[]>
 }
 
 // Los eventos llegan ordenados por fecha: donde una respuesta puede cambiar
@@ -71,6 +73,7 @@ export function resumir(eventos: Evento[], obra: string): Resumen {
   const nodosTerminados = new Map<string, number>()
   const recomendaciones = new Map<string, { final: string; si: boolean }>()
   const avisosActivos = new Map<string, boolean>()
+  const correosAviso = new Map<string, string>()
   let iniciados = 0
   let completados = 0
   let instalaciones = 0
@@ -79,7 +82,11 @@ export function resumir(eventos: Evento[], obra: string): Resumen {
   for (const e of eventos) {
     personas.add(e.dispositivo)
     if (e.tipo === 'instalacion') instalaciones++
-    if (e.tipo === 'aviso') avisosActivos.set(`${e.dispositivo}|${texto(e.datos.obra)}`, e.datos.activo === true)
+    if (e.tipo === 'aviso') {
+      const clave = `${e.dispositivo}|${texto(e.datos.obra)}`
+      avisosActivos.set(clave, e.datos.activo === true)
+      if (e.datos.activo === true) correosAviso.set(clave, texto(e.datos.correo))
+    }
     if (e.obra !== obra) continue
 
     const nodo = texto(e.datos.nodo)
@@ -112,7 +119,14 @@ export function resumir(eventos: Evento[], obra: string): Resumen {
   const respuestas = [...recomendaciones.values()]
 
   const avisos = new Map<string, number>()
-  for (const [clave, activo] of avisosActivos) if (activo) sumar(avisos, clave.split('|')[1])
+  const correos = new Map<string, string[]>()
+  for (const [clave, activo] of avisosActivos) {
+    if (!activo) continue
+    const obraAviso = clave.split('|')[1]
+    sumar(avisos, obraAviso)
+    const correo = correosAviso.get(clave)
+    if (correo && !correos.get(obraAviso)?.includes(correo)) correos.set(obraAviso, [...(correos.get(obraAviso) ?? []), correo])
+  }
 
   return {
     personas: personas.size,
@@ -130,5 +144,6 @@ export function resumir(eventos: Evento[], obra: string): Resumen {
     nodosIniciados,
     nodosTerminados,
     avisos,
+    correos,
   }
 }

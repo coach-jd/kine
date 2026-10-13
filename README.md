@@ -50,4 +50,18 @@ Tamaño: 1200 × 630, PNG o JPG con ese mismo nombre. Las actuales son tarjetas 
 
 ## Contenido
 
-Títulos, sinopsis, decisiones y finales están en `src/data/obras.ts`.
+Cada obra se describe en una Ficha de Publicación: un archivo JSON en `src/data/obras/`, entregado por Polimetrajes Studio (Maker V). Trae el título, la sinopsis, los textos para buscadores y para compartir, las cuatro decisiones y los nueve finales.
+
+Para publicar o actualizar una obra:
+
+1. Copiar su ficha a `src/data/obras/<obra>.json`.
+2. Si la obra es nueva, sumarla a la lista `FICHAS` de `src/data/obras.ts`.
+3. Subir sus videos e imágenes con los nombres fijos de las tablas de arriba.
+
+Antes de compilar se revisa cada ficha (`scripts/verificar-fichas.mjs`). Si a una le falta un nodo, una opción o un texto, la compilación se detiene con un mensaje que dice cuál, y la versión publicada no cambia.
+
+Una obra con `estado` igual a `proximamente` aparece en "Próximos estrenos". Su ficha no debe traer decisiones ni finales: todo lo que contiene una ficha queda a la vista de quien abra la app, y la revisión lo rechaza.
+
+## Avisos de estreno
+
+Al tocar "Avísame" la app pide un correo. Se guarda con el evento `aviso` en la tabla de medición, junto a la obra. El tablero privado muestra cuántas personas pidieron cada estreno y permite copiar sus correos.

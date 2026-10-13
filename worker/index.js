@@ -18,10 +18,14 @@ export default {
 
     const final = nodo ? obra.nodos?.[nodo]?.final : undefined
     const total = idsDeFinales(obra).length
-    const titulo = final ? `${final.titulo} de ${obra.titulo} · Kine` : `${obra.titulo} · Kine`
+    // Los textos salen de la Ficha de Publicación de la obra cuando los trae.
+    const titulo = final
+      ? `${final.titulo} de ${obra.titulo} · Kine`
+      : (obra.seo?.titulo ?? `${obra.titulo} · Kine`)
     const descripcion = final
-      ? `Descubrí uno de los ${total} finales de ${obra.titulo}. ¿Cuál te toca a ti?`
-      : (obra.sinopsis ?? '')
+      ? (obra.compartir?.texto_final ?? `Descubrí uno de los ${total} finales de ${obra.titulo}. ¿Cuál te toca a ti?`)
+      : (obra.seo?.descripcion ?? obra.sinopsis ?? '')
+    const palabras = (obra.seo?.palabras_clave ?? []).join(', ')
     const imagen = `${url.origin}/og/${obra.id}${final ? `/${nodo}` : ''}.png`
     const destino = `${url.origin}/#/obra/${obra.id}`
 
@@ -31,6 +35,7 @@ export default {
     <meta charset="UTF-8" />
     <title>${escapar(titulo)}</title>
     <meta name="description" content="${escapar(descripcion)}" />
+    <meta name="keywords" content="${escapar(palabras)}" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Kine" />
     <meta property="og:title" content="${escapar(titulo)}" />

@@ -1,0 +1,51 @@
+{
+  "esquema": "ficha-publicacion-1.0",
+  "obra": {
+    "id": "la-casa-que-recuerda",
+    "titulo": "La casa que recuerda",
+    "estado": "proximamente",
+    "generos": [
+      "Terror sobrenatural",
+      "Drama psicológico"
+    ],
+    "tono": "violeta",
+    "gancho": "Tú decides cómo termina.",
+    "sinopsis": "Alma vuelve a la casa familiar para esclarecer la desaparición de su hermano. Sus habitaciones devuelven fragmentos del pasado a cambio de borrar recuerdos del presente. Mientras su madre intenta detenerla, cada respuesta amenaza aquello que todavía la une a su vida.",
+    "minutos": 12,
+    "creditos": "Una obra de Polimetrajes Studio",
+    "idioma": "es"
+  },
+  "control": {
+    "version": "v0.1",
+    "fecha": "2026-10-13",
+    "estado": "provisional",
+    "documentos_base": {
+      "dmd": null,
+      "mapa_narrativo": null,
+      "guion": null
+    },
+    "nota": "Concepto aprobado del Catálogo de historias a desarrollar. Ficha de próximo estreno: no incluye decisiones ni finales, que siguen sin DMD aprobado ni auditoría."
+  },
+  "seo": {
+    "titulo": "La casa que recuerda: terror interactivo | Kine",
+    "descripcion": "Una casa devuelve recuerdos y cobra otros a cambio. La casa que recuerda, un terror sobrenatural de Polimetrajes en desarrollo para Kine.",
+    "palabras_clave": [
+      "La casa que recuerda",
+      "polimetraje",
+      "historia interactiva",
+      "terror sobrenatural",
+      "memoria",
+      "identidad",
+      "misterio familiar",
+      "video vertical",
+      "Kine"
+    ]
+  },
+  "compartir": {
+    "texto_obra": "La casa que recuerda: cada respuesta tiene un precio. Próximamente en Kine."
+  },
+  "medios": {
+    "afiche": "portadas/la-casa-que-recuerda.jpg",
+    "cartel": "portadas/la-casa-que-recuerda-cartel.jpg"
+  }
+}

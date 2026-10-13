@@ -13,15 +13,16 @@ export interface Recorrido {
 interface Estado {
   recorridos: Recorrido[]
   avisos: string[]
+  correo: string
 }
 
 const CLAVE = 'kine.estado'
-const VACIO: Estado = { recorridos: [], avisos: [] }
+const VACIO: Estado = { recorridos: [], avisos: [], correo: '' }
 
 function leer(): Estado {
   try {
     const guardado = JSON.parse(localStorage.getItem(CLAVE) ?? 'null') as Partial<Estado> | null
-    return { recorridos: guardado?.recorridos ?? [], avisos: guardado?.avisos ?? [] }
+    return { recorridos: guardado?.recorridos ?? [], avisos: guardado?.avisos ?? [], correo: guardado?.correo ?? '' }
   } catch {
     return VACIO
   }
@@ -63,10 +64,15 @@ export function recomendar(id: string, recomienda: boolean) {
   registrar('recomendacion', { obra: recorrido.obra, final: recorrido.final, recorrido: id, recomienda })
 }
 
-export function alternarAviso(obra: string) {
-  const activo = !estado.avisos.includes(obra)
-  cambiar({ ...estado, avisos: activo ? [...estado.avisos, obra] : estado.avisos.filter((o) => o !== obra) })
-  registrar('aviso', { obra, activo })
+// El correo viaja con el aviso para poder escribirle a la persona el día del estreno.
+export function activarAviso(obra: string, correo: string) {
+  cambiar({ ...estado, correo, avisos: [...estado.avisos.filter((o) => o !== obra), obra] })
+  registrar('aviso', { obra, activo: true, correo })
+}
+
+export function quitarAviso(obra: string) {
+  cambiar({ ...estado, avisos: estado.avisos.filter((o) => o !== obra) })
+  registrar('aviso', { obra, activo: false })
 }
 
 export const finalesDescubiertos = (e: Estado, obra: string) =>
