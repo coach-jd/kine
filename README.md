@@ -36,6 +36,18 @@ La app busca cada archivo por nombre fijo dentro de la carpeta de medios (`publi
 
 Formato de video: vertical 9:16, MP4 (H.264 + AAC). Si un archivo falta, la app muestra un sustituto y el recorrido continúa.
 
+## Enlaces para compartir
+
+Al compartir una obra o un final, el enlace es `/c/<obra>` o `/c/<obra>/<final>`. Esa dirección la responde `worker/index.js` con la imagen y el texto de la vista previa, y lleva a la ficha de la obra.
+
+| Archivo | Vista previa de |
+|---|---|
+| `public/og/kine.png` | La app |
+| `public/og/<obra>.png` | Una obra |
+| `public/og/<obra>/<final>.png` | Un final, por ejemplo `9no-inning/T-A2.png` |
+
+Tamaño: 1200 × 630, PNG o JPG con ese mismo nombre. Las actuales son tarjetas provisionales de texto: se reemplazan por imágenes de la obra sin cambiar el código.
+
 ## Contenido
 
 Títulos, sinopsis, decisiones y finales están en `src/data/obras.ts`.

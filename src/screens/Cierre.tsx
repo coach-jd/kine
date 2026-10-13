@@ -101,6 +101,7 @@ export default function Cierre() {
               const resultado = await compartir(
                 obra,
                 `Descubrí uno de los ${total} finales de ${obra.titulo} en Kine. ¿Cuál te toca a ti?`,
+                recorrido.final,
               )
               setCopiado(resultado === 'copiado')
             }}

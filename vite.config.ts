@@ -28,7 +28,10 @@ export default defineConfig({
       workbox: {
         // El video nunca se precachea: se sirve aparte y pesa demasiado.
         globPatterns: ['**/*.{js,css,html,png,webp,svg}'],
-        navigateFallbackDenylist: [/\/media\//],
+        // Las imágenes de vista previa solo las piden las apps de mensajería.
+        globIgnores: ['og/**'],
+        // Los enlaces para compartir los responde el servidor, no la app instalada.
+        navigateFallbackDenylist: [/\/media\//, /^\/c\//],
       },
     }),
   ],
