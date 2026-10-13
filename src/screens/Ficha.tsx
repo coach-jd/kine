@@ -1,9 +1,10 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { Icono } from '../components/Icono'
 import { Afiche, BotonAviso } from '../components/Piezas'
 import { idsDeFinales, obraPorId } from '../data/obras'
 import { compartir } from '../lib/compartir'
-import { urlCartel } from '../lib/media'
+import { urlCartel, urlPortada } from '../lib/media'
 import { finalesDescubiertos, useEstado } from '../lib/store'
 
 const RECORRIDO = [
@@ -16,6 +17,8 @@ const RECORRIDO = [
 export default function Ficha() {
   const { obraId = '' } = useParams()
   const estado = useEstado()
+  const navegar = useNavigate()
+  const [afiche, setAfiche] = useState(false)
   const obra = obraPorId(obraId)
   if (!obra) return <Navigate to="/" replace />
 
@@ -26,15 +29,26 @@ export default function Ficha() {
 
   return (
     <main className="flex flex-col pb-8">
-      <Afiche src={urlCartel(obra.id)} tono={obra.tono} titulo="" className="h-[420px] shrink-0">
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-ground to-transparent" />
-        <Link
-          to="/"
-          aria-label="Volver al inicio"
+      {/* Un próximo estreno muestra su afiche entero; una obra disponible, la imagen recortada. */}
+      <Afiche
+        src={disponible ? urlCartel(obra.id) : urlPortada(obra.id)}
+        tono={obra.tono}
+        titulo=""
+        className={disponible ? 'h-[420px] shrink-0' : 'aspect-2/3 shrink-0'}
+      >
+        {disponible && <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-ground to-transparent" />}
+        <button onClick={() => setAfiche(true)} aria-label="Ver el afiche completo" className="absolute inset-0" />
+        <div className="pointer-events-none absolute right-4 bottom-4 flex h-9 items-center gap-1.5 rounded-full bg-ground/70 px-3 text-[13px] font-bold">
+          <Icono nombre="ampliar" tam={16} />
+          Ver afiche
+        </div>
+        <button
+          onClick={() => (window.history.length > 1 ? navegar(-1) : navegar('/'))}
+          aria-label="Volver"
           className="absolute top-4 left-4 flex h-11 w-11 items-center justify-center rounded-full bg-ground/70"
         >
           <Icono nombre="atras" tam={22} />
-        </Link>
+        </button>
         <button
           onClick={() =>
             compartir(obra, obra.compartir?.texto_obra ?? `Mira ${obra.titulo} en Kine: tú decides cómo termina.`)
@@ -114,6 +128,24 @@ export default function Ficha() {
           </section>
         )}
       </div>
+
+      {afiche && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Afiche de ${obra.titulo}`}
+          onClick={() => setAfiche(false)}
+          className="fixed inset-0 z-50 flex animate-aparecer items-center justify-center bg-ground"
+        >
+          <img src={urlCartel(obra.id)} alt={`Afiche de ${obra.titulo}`} className="h-full w-full object-contain" />
+          <button
+            aria-label="Cerrar el afiche"
+            className="absolute top-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-ground/70"
+          >
+            <Icono nombre="cerrar" />
+          </button>
+        </div>
+      )}
     </main>
   )
 }
