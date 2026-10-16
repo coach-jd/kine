@@ -20,9 +20,11 @@ for (const archivo of readdirSync(carpeta).filter((a) => a.endsWith('.json'))) {
   for (const campo of ['titulo', 'estado', 'generos', 'tono']) {
     if (!ficha.obra?.[campo]) falla(`falta obra.${campo}`)
   }
-  if (!['disponible', 'proximamente'].includes(ficha.obra?.estado)) falla('obra.estado debe ser disponible o proximamente')
+  if (!['disponible', 'proximamente', 'demostracion'].includes(ficha.obra?.estado))
+    falla('obra.estado debe ser disponible, proximamente o demostracion')
   if (!['cian', 'violeta', 'naranja'].includes(ficha.obra?.tono)) falla('obra.tono debe ser cian, violeta o naranja')
-  if (ficha.obra?.estado !== 'disponible') {
+  // Una demostración se revisa igual que una obra disponible: se puede reproducir.
+  if (ficha.obra?.estado === 'proximamente') {
     // Todo lo que trae una ficha queda a la vista de cualquiera que abra la app.
     if (ficha.nodos) falla('una obra próxima no debe traer nodos: publicaría sus decisiones y finales')
     continue

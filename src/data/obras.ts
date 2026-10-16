@@ -5,6 +5,7 @@ import fichaCasaQueRecuerda from './obras/la-casa-que-recuerda.json'
 import fichaFronteraDelAgua from './obras/la-frontera-del-agua.json'
 import fichaUltimaFrecuencia from './obras/la-ultima-frecuencia.json'
 import fichaLugarEnLaMesa from './obras/un-lugar-en-la-mesa.json'
+import fichaEstacion from './obras/la-estacion.json'
 
 export type Tono = 'cian' | 'violeta' | 'naranja'
 
@@ -48,7 +49,9 @@ export interface Obra {
   titulo: string
   generos: string[]
   tono: Tono
-  estado: 'disponible' | 'proximamente'
+  // demostracion: se reproduce por enlace directo (#/ver/<obra>), pero no aparece
+  // en el catálogo ni se puede compartir. Sirve para grabar demos de la app.
+  estado: 'disponible' | 'proximamente' | 'demostracion'
   sinopsis?: string
   minutos?: number
   creditos?: string
@@ -94,7 +97,10 @@ const FICHAS = [
   fichaFronteraDelAgua,
 ].map(leerFicha)
 
-export const OBRAS: Obra[] = FICHAS
+// Las demostraciones no entran en FICHAS, así que ningún listado las muestra.
+const DEMOS = [fichaEstacion].map(leerFicha)
+
+export const OBRAS: Obra[] = [...FICHAS, ...DEMOS]
 export const ESTRENO = FICHAS[0]
 export const PROXIMAS = FICHAS.filter((f) => f.estado === 'proximamente')
 
