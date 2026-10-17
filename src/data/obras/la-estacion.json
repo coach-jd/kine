@@ -1,0 +1,86 @@
+{
+  "esquema": "ficha-publicacion-1.0",
+  "obra": {
+    "id": "la-estacion",
+    "titulo": "La estación",
+    "estado": "demostracion",
+    "generos": ["Demostración"],
+    "tono": "violeta",
+    "gancho": "Tú decides cómo termina.",
+    "sinopsis": "Una viajera llega de noche a una estación rural justo cuando se aleja el último tren. Esperar, pedir ayuda o regresar: cada camino protege algo y arriesga otra cosa.",
+    "minutos": 3,
+    "creditos": "Demostración de Polimetrajes Studio",
+    "idioma": "es"
+  },
+  "control": {
+    "version": "v0.1",
+    "fecha": "2026-10-16",
+    "estado": "demostracion",
+    "documentos_base": { "dmd": null, "mapa_narrativo": null, "guion": null },
+    "nota": "Obra de demostración para grabar el puente de los reels «Decisiones del guionista». No aparece en el catálogo ni se puede compartir; solo se abre por enlace directo (#/ver/la-estacion). Contenido original, ajeno a cualquier película referenciada en la campaña."
+  },
+  "inicio": "T",
+  "nodos": {
+    "T": {
+      "video": "la-estacion/T.mp4",
+      "bucle": "la-estacion/T-umbral.mp4",
+      "decision": {
+        "titulo": "El último tren",
+        "contexto": "La estación está vacía y el próximo tren sale al amanecer. ¿Qué debería hacer ella?",
+        "opciones": [
+          { "clave": "A", "titulo": "Esperar al amanecer", "corto": "Esperar", "descripcion": "Quedarse en el andén hasta el primer tren.", "destino": "T-A" },
+          { "clave": "B", "titulo": "Pedir ayuda", "corto": "Ayuda", "descripcion": "Acercarse al guardia que cierra la taquilla.", "destino": "T-B" },
+          { "clave": "C", "titulo": "Regresar", "corto": "Regresar", "descripcion": "Volver a pie por la carretera hacia el pueblo.", "destino": "T-C" }
+        ]
+      }
+    },
+    "T-A": {
+      "video": "la-estacion/T-A.mp4",
+      "bucle": "la-estacion/T-A-umbral.mp4",
+      "decision": {
+        "titulo": "Compañía en el andén",
+        "contexto": "Un desconocido se sienta en el mismo banco y le ofrece compartir un taxi. ¿Qué debería hacer ella?",
+        "opciones": [
+          { "clave": "1", "titulo": "Aceptar el taxi", "descripcion": "Llegar antes, con alguien que no conoce.", "destino": "T-A1" },
+          { "clave": "2", "titulo": "Rechazar y esperar", "descripcion": "Seguir sola hasta que salga el sol.", "destino": "T-A2" },
+          { "clave": "3", "titulo": "Llamar a alguien", "descripcion": "Despertar a una amiga para que la recoja.", "destino": "T-A3" }
+        ]
+      }
+    },
+    "T-B": {
+      "video": "la-estacion/T-B.mp4",
+      "bucle": "la-estacion/T-B-umbral.mp4",
+      "decision": {
+        "titulo": "Lo que sabe el guardia",
+        "contexto": "El guardia conoce un camino corto hasta el pueblo, pero no puede acompañarla. ¿Qué debería hacer ella?",
+        "opciones": [
+          { "clave": "1", "titulo": "Tomar el camino corto", "descripcion": "Cruzar el bosque con la linterna del guardia.", "destino": "T-B1" },
+          { "clave": "2", "titulo": "Quedarse en la taquilla", "descripcion": "Pedirle refugio hasta el primer tren.", "destino": "T-B2" },
+          { "clave": "3", "titulo": "Que él llame a alguien", "descripcion": "Confiar en los contactos del guardia.", "destino": "T-B3" }
+        ]
+      }
+    },
+    "T-C": {
+      "video": "la-estacion/T-C.mp4",
+      "bucle": "la-estacion/T-C-umbral.mp4",
+      "decision": {
+        "titulo": "La carretera",
+        "contexto": "Un coche se detiene a su lado y la conductora se ofrece a llevarla. ¿Qué debería hacer ella?",
+        "opciones": [
+          { "clave": "1", "titulo": "Subir al coche", "descripcion": "Aceptar la ayuda de una desconocida.", "destino": "T-C1" },
+          { "clave": "2", "titulo": "Seguir caminando", "descripcion": "Llegar por sus propios medios, aunque tarde.", "destino": "T-C2" },
+          { "clave": "3", "titulo": "Volver a la estación", "descripcion": "Deshacer el camino y esperar el tren.", "destino": "T-C3" }
+        ]
+      }
+    },
+    "T-A1": { "video": "la-estacion/T-A1.mp4", "final": { "titulo": "Final A1", "resumen": "El viaje es corto y la conversación, inesperada: llega a casa antes de lo previsto." } },
+    "T-A2": { "video": "la-estacion/T-A2.mp4", "final": { "titulo": "Final A2", "resumen": "Ve amanecer sola en el andén y sube al primer tren, cansada pero tranquila." } },
+    "T-A3": { "video": "la-estacion/T-A3.mp4", "final": { "titulo": "Final A3", "resumen": "Su amiga llega de madrugada; el reencuentro vale la noche perdida." } },
+    "T-B1": { "video": "la-estacion/T-B1.mp4", "final": { "titulo": "Final B1", "resumen": "El bosque es más largo de lo que prometía el guardia, pero encuentra el pueblo." } },
+    "T-B2": { "video": "la-estacion/T-B2.mp4", "final": { "titulo": "Final B2", "resumen": "Comparte café y silencio con el guardia hasta que llega el tren." } },
+    "T-B3": { "video": "la-estacion/T-B3.mp4", "final": { "titulo": "Final B3", "resumen": "Un vecino del guardia la recoge; llega a salvo, en deuda con dos desconocidos." } },
+    "T-C1": { "video": "la-estacion/T-C1.mp4", "final": { "titulo": "Final C1", "resumen": "La conductora va al mismo pueblo; la confianza le ahorra la noche." } },
+    "T-C2": { "video": "la-estacion/T-C2.mp4", "final": { "titulo": "Final C2", "resumen": "Llega al amanecer con los pies doloridos y la certeza de haberlo hecho sola." } },
+    "T-C3": { "video": "la-estacion/T-C3.mp4", "final": { "titulo": "Final C3", "resumen": "De vuelta en el andén, el primer tren llega antes de lo que esperaba." } }
+  }
+}

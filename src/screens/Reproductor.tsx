@@ -4,7 +4,7 @@ import { Icono } from '../components/Icono'
 import { TONO, TONOS, obraPorId, type Obra, type Opcion } from '../data/obras'
 import { urlBucle, urlVideo } from '../lib/media'
 import { registrarFinal } from '../lib/store'
-import { registrar } from '../lib/tracker'
+import { registrar as registrarEvento, type TipoEvento } from '../lib/tracker'
 
 // video: se reproduce el clip del nodo. decision: el bucle espera la elección.
 // falta: el clip aún no se ha subido y una tarjeta lo sustituye.
@@ -38,6 +38,10 @@ function Escena({ obra, nodoInicial, enDecision }: { obra: Obra; nodoInicial: st
   const [resta, setResta] = useState(Infinity)
   const video = useRef<HTMLVideoElement>(null)
   const inicioDecision = useRef(Date.now())
+  // Las demostraciones se usan para grabar la app: no cuentan en la medición.
+  const registrar = (tipo: TipoEvento, datos: Record<string, unknown>) => {
+    if (obra.estado !== 'demostracion') registrarEvento(tipo, datos)
+  }
 
   const nodo = obra.nodos![nodoId]
   const camino = caminoDe(nodoId)
